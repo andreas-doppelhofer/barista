@@ -27,6 +27,7 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
     patches = [
       "//:rules_nodejs-npm-install+2.0.3.patch",
+      "//:rules_nodejs-launcher+2.0.3.patch",
     ]
 )
 
@@ -54,12 +55,14 @@ npm_install(
     data = [
         "//:patches/@angular+bazel+10.0.6.patch",
         "//:patches/@bazel+typescript+2.0.3.patch",
+        "//:patches/jest-haste-map+26.1.0.patch",
+        "//:patches/stylelint+13.2.1.patch",
         "//:postinstall.js",
         "//:view-engine-tsconfig.json"
     ],
     package_json = "//:package.json",
     package_lock_json = "//:package-lock.json",
-    quiet = False,
+    quiet = True,
     symlink_node_modules = True,
 )
 
